@@ -16,6 +16,7 @@ class CustomHeaderCell: UITableViewCell {
     @IBOutlet weak var label3: UILabel!
 
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         
         label1.font = UIFont(name: "Plus Jakarta Sans", size: 16)

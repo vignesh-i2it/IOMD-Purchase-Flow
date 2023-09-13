@@ -19,8 +19,9 @@
 		2F3D0F102AAB45E40063EEF2 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F0F2AAB45E40063EEF2 /* CustomHeaderCell.swift */; };
 		2F3D0F122AAB46340063EEF2 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F112AAB46340063EEF2 /* CustomHeaderView.swift */; };
 		2F3D0F142AAB465B0063EEF2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */; };
-		2F3D0F162AAB477F0063EEF2 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F152AAB477F0063EEF2 /* BottomSheetController.swift */; };
+		2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */; };
 		2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */; };
+		2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,9 @@
 		2F3D0F0F2AAB45E40063EEF2 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderCell.swift; sourceTree = "<group>"; };
 		2F3D0F112AAB46340063EEF2 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		2F3D0F152AAB477F0063EEF2 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
+		2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedInformationViewController.swift; sourceTree = "<group>"; };
+		2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +78,12 @@
 				2F3D0EF72AAB410C0063EEF2 /* SceneDelegate.swift */,
 				2F3D0EF92AAB410C0063EEF2 /* ViewController.swift */,
 				2F3D0F092AAB43220063EEF2 /* LoadingScreenViewController.swift */,
-				2F3D0F152AAB477F0063EEF2 /* BottomSheetController.swift */,
+				2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */,
 				2F3D0F0F2AAB45E40063EEF2 /* CustomHeaderCell.swift */,
 				2F3D0F112AAB46340063EEF2 /* CustomHeaderView.swift */,
 				2F3D0F0D2AAB45720063EEF2 /* NameCell.swift */,
 				2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */,
+				2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */,
 				2F3D0F0B2AAB44560063EEF2 /* PurchaseViewController.swift */,
 				2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */,
 				2F3D0EFB2AAB410C0063EEF2 /* Main.storyboard */,
@@ -165,10 +168,11 @@
 				2F3D0F122AAB46340063EEF2 /* CustomHeaderView.swift in Sources */,
 				2F3D0F102AAB45E40063EEF2 /* CustomHeaderCell.swift in Sources */,
 				2F3D0F142AAB465B0063EEF2 /* ImageCell.swift in Sources */,
+				2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */,
 				2F3D0F0C2AAB44560063EEF2 /* PurchaseViewController.swift in Sources */,
 				2F3D0EFA2AAB410C0063EEF2 /* ViewController.swift in Sources */,
 				2F3D0EF62AAB410C0063EEF2 /* AppDelegate.swift in Sources */,
-				2F3D0F162AAB477F0063EEF2 /* BottomSheetController.swift in Sources */,
+				2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */,
 				2F3D0F0E2AAB45720063EEF2 /* NameCell.swift in Sources */,
 				2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */,
 				2F3D0EF82AAB410C0063EEF2 /* SceneDelegate.swift in Sources */,

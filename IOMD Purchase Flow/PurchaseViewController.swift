@@ -40,8 +40,6 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
         
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(presentBottomSheet), userInfo: nil, repeats: false)
         
-//        NotificationCenter.default.addObserver(<#T##observer: Any##Any#>, selector: <#T##Selector#>, name: <#T##NSNotification.Name?#>, object: <#T##Any?#>)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(navigateToSavedInformationViewController), name: NSNotification.Name("dismissed"), object: nil)
         
         let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissBottomSheet))
@@ -194,7 +192,7 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func presentBottomSheet() {
 
-        let bottomSheetVC = storyboard?.instantiateViewController(withIdentifier: "BottomSheetController") as! BottomSheetController
+        let bottomSheetVC = storyboard?.instantiateViewController(withIdentifier: "BottomSheetViewController") as! BottomSheetViewController
         let sheetPresentationController = bottomSheetVC.presentationController as! UISheetPresentationController
 
         sheetPresentationController.detents = [
