@@ -83,15 +83,13 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
+        super.viewWillAppear(animated)
         navigationItem.hidesBackButton = true
     }
 
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        
-        //navigationController?.popViewController(animated: true)
-        navigationController?.popToRootViewController(animated: true)
+                navigationController?.popToRootViewController(animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

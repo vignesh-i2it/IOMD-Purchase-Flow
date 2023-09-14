@@ -16,43 +16,18 @@ class CardsCellTableViewCell: UITableViewCell {
     @IBOutlet weak var showButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
-        
-        var eyeButtonAction: (() -> Void)?
-        var deleteButtonAction: (() -> Void)?
-        
-        var showCardDetails: Bool = false {
-            didSet {
-                cardNumberLabel.text = showCardDetails ? cardDetails["cardNumber"] : "•••• ••••"
-                
-                let symbolName = showCardDetails ? "eye.fill" : "eye.slash.fill"
-                let configuration = UIImage.SymbolConfiguration(pointSize: 16)
-                let image = UIImage(systemName: symbolName, withConfiguration: configuration)
-                
-                showButton.setImage(image, for: .normal)
-
-            }
-        }
-        
-        var cardDetails: [String: String] = [:] {
-            didSet {
-                nameLabel.text = "\(cardDetails["firstName"] ?? "") \(cardDetails["lastName"] ?? "")"
-                expiryDateLabel.text = cardDetails["expiryDate"]
-            }
-        }
-        
-        override func awakeFromNib() {
-            super.awakeFromNib()
-            
-            showButton.addTarget(self, action: #selector(showButtonTapped), for: .touchUpInside)
-            deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        }
-        
-        @objc func showButtonTapped() {
-            showCardDetails.toggle()
-            eyeButtonAction?()
-        }
-        
-        @objc func deleteButtonTapped() {
-            deleteButtonAction?()
-        }
+    var isCardVisible = false
+    
+    var showButtonAction: (() -> Void)?
+    
+    @IBAction func showButtonTapped(_ sender: UIButton) {
+        showButtonAction?()
     }
+    
+    var deleteButtonAction: (() -> Void)?
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteButtonAction?()
+    }
+    
+}
