@@ -29,5 +29,4 @@ class CardsCellTableViewCell: UITableViewCell {
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteButtonAction?()
     }
-    
 }

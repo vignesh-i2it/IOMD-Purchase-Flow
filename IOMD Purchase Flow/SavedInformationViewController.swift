@@ -44,10 +44,10 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     let cardDetailsSection2 = ["xxxx5678"]
     
     var cardData: [[String: String]] = [
-        ["firstName": "Jack", "lastName": "Dawson", "hiddenCardNumber": "•••• 5678",
-            "cardNumber": "8765 5678", "expiryDate": "12/25"],
-        ["firstName": "Jill", "lastName": "McGill", "hiddenCardNumber": "•••• 5432",
-            "cardNumber": "9876 3452", "expiryDate": "08/23"]
+        ["firstName": "Jack", "lastName": "Dawson","cardNumber": "8765 5678 9862 6543",
+            "expiryDate": "12/25"],
+        ["firstName": "Jill", "lastName": "McGill","cardNumber": "9876 3452 6292 7318",
+            "expiryDate": "08/23"]
     ]
     
     var currentEmailSection: [String] = []
@@ -58,6 +58,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     var isButton3Active = false
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         button2.isSelected = true
@@ -150,7 +151,6 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             view2.isHidden = false
         } else if sender == button3 {
             isButton3Active = true
-            //tableView.reloadData()
             view3.isHidden = false
         }
         
@@ -208,7 +208,6 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if isButton3Active {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CardsCellTableViewCell", for: indexPath) as! CardsCellTableViewCell
@@ -218,12 +217,33 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             cell.nameLabel.text = "\(card["firstName"] ?? "") \(card["lastName"] ?? "")"
 
             cell.expiryDateLabel.text = card["expiryDate"]
-        
-            let isCardVisible = cell.isCardVisible
             
-            cell.cardNumberLabel.text = isCardVisible ? card["cardNumber"] : card["hiddenCardNumber"]
+            cell.cardNumberLabel.text = cell.isCardVisible ? card["cardNumber"] : maskCardNumber(cardNumber: card["cardNumber"] ?? "")
             
-            let symbolName = isCardVisible ? "eye.slash.fill" : "eye.fill"
+            func maskCardNumber(cardNumber: String) -> String {
+                if let lastFourDigits = cardNumber.range(of: "\\d{4}$", options: .regularExpression) {
+                    let maskedSection = "•••• •••• •••• "
+                    return maskedSection + cardNumber[lastFourDigits]
+                }
+                return cardNumber
+            }
+
+//            func maskCardNumber(cardNumber: String) -> String {
+//                var segments = cardNumber.split(separator: " ")
+//                for i in 0..<segments.count - 1 {
+//                    segments[i] = "••••"
+//                }
+//                return segments.joined(separator: " ")
+//            }
+
+//            if !cell.isCardVisible, let cardNumber = card["cardNumber"] {
+//                let maskedCardNumber = String(repeating: "•••• ", count: 3) + String(cardNumber.suffix(4))
+//                cell.cardNumberLabel.text = maskedCardNumber
+//            } else {
+//                cell.cardNumberLabel.text = card["cardNumber"]
+//            }
+            
+            let symbolName = cell.isCardVisible ? "eye.slash.fill" : "eye.fill"
             let configuration = UIImage.SymbolConfiguration(pointSize: 10)
             let image = UIImage(systemName: symbolName, withConfiguration: configuration)
             
@@ -236,8 +256,21 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             }
 
             cell.deleteButtonAction = { [weak self] in
-                self?.cardData.remove(at: indexPath.row)
-                tableView.reloadData()
+                
+                let alertController = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to delete this card?", preferredStyle: .alert)
+
+                let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+                    self?.cardData.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+                alertController.addAction(deleteAction)
+                
+                alertController.addAction(cancelAction)
+
+                self?.present(alertController, animated: true, completion: nil)
             }
         
             return cell

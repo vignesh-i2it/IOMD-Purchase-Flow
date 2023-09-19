@@ -27,6 +27,5 @@ class CustomHeaderCell: UITableViewCell {
         
         label3.font = UIFont(name: "Plus Jakarta Sans", size: 12)
         label3.font = UIFont.systemFont(ofSize: 12, weight: .thin)
-        
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F182ECC2AB97DDA00FFCD7B /* MainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F182ECB2AB97DDA00FFCD7B /* MainNavController.swift */; };
 		2F3D0EF62AAB410C0063EEF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0EF52AAB410C0063EEF2 /* AppDelegate.swift */; };
 		2F3D0EF82AAB410C0063EEF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0EF72AAB410C0063EEF2 /* SceneDelegate.swift */; };
 		2F3D0EFA2AAB410C0063EEF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0EF92AAB410C0063EEF2 /* ViewController.swift */; };
@@ -22,9 +23,11 @@
 		2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */; };
 		2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */; };
 		2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */; };
+		2FA6F6932AB489C6005772AE /* GreenScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F182ECB2AB97DDA00FFCD7B /* MainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavController.swift; sourceTree = "<group>"; };
 		2F3D0EF22AAB410C0063EEF2 /* IOMD Purchase Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOMD Purchase Flow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3D0EF52AAB410C0063EEF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F3D0EF72AAB410C0063EEF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 		2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedInformationViewController.swift; sourceTree = "<group>"; };
 		2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCellTableViewCell.swift; sourceTree = "<group>"; };
+		2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */,
 				2F3D0F0B2AAB44560063EEF2 /* PurchaseViewController.swift */,
 				2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */,
+				2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */,
+				2F182ECB2AB97DDA00FFCD7B /* MainNavController.swift */,
 				2F3D0EFB2AAB410C0063EEF2 /* Main.storyboard */,
 				2F3D0EFE2AAB410E0063EEF2 /* Assets.xcassets */,
 				2F3D0F002AAB410E0063EEF2 /* LaunchScreen.storyboard */,
@@ -173,7 +179,9 @@
 				2F3D0EFA2AAB410C0063EEF2 /* ViewController.swift in Sources */,
 				2F3D0EF62AAB410C0063EEF2 /* AppDelegate.swift in Sources */,
 				2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */,
+				2FA6F6932AB489C6005772AE /* GreenScreenViewController.swift in Sources */,
 				2F3D0F0E2AAB45720063EEF2 /* NameCell.swift in Sources */,
+				2F182ECC2AB97DDA00FFCD7B /* MainNavController.swift in Sources */,
 				2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */,
 				2F3D0EF82AAB410C0063EEF2 /* SceneDelegate.swift in Sources */,
 				2F3D0F0A2AAB43220063EEF2 /* LoadingScreenViewController.swift in Sources */,

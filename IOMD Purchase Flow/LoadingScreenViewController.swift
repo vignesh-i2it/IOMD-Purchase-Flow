@@ -38,10 +38,13 @@ class LoadingScreenViewController: UIViewController {
     }
     
     @objc func navigateToPurchaseViewController() {
+//
+//        let purchaseVC = storyboard?.instantiateViewController(withIdentifier: "PurchaseViewController") as! PurchaseViewController
+//        self.navigationController?.pushViewController(purchaseVC, animated: true)
+//
+        let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainNavController") as! MainNavController
+        self.navigationController?.pushViewController(tabBar, animated: true)
         
-        let purchaseVC = storyboard?.instantiateViewController(withIdentifier: "PurchaseViewController") as! PurchaseViewController
-        self.navigationController?.pushViewController(purchaseVC, animated: true)
-       
     }
 
   

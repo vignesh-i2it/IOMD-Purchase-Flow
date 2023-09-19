@@ -11,9 +11,7 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIButton!
-    
     @IBOutlet weak var yourScrollView: UIScrollView!
-
     
     let sectionTitles = ["Header Section", "Items", "Name", "Card Details"]
 
@@ -40,22 +38,21 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
         
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(presentBottomSheet), userInfo: nil, repeats: false)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(navigateToSavedInformationViewController), name: NSNotification.Name("dismissed"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(navigateToSavedInformationViewController), name: NSNotification.Name("dismissed"), object: nil)
         
         let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissBottomSheet))
                 gestureRecognizer.direction = .down
                 view.addGestureRecognizer(gestureRecognizer)
         
         yourScrollView.layer.shadowColor = UIColor.black.cgColor
-                yourScrollView.layer.shadowOpacity = 0.5
-                yourScrollView.layer.shadowOffset = CGSize(width: 0, height: 5)
-                yourScrollView.layer.shadowRadius = 4
-                yourScrollView.layer.masksToBounds = false
+        yourScrollView.layer.shadowOpacity = 0.5
+        yourScrollView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        yourScrollView.layer.shadowRadius = 4
+        yourScrollView.layer.masksToBounds = false
 
-                // Add rounded corners
-                yourScrollView.layer.cornerRadius = 20
-                yourScrollView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                yourScrollView.clipsToBounds = true
+        yourScrollView.layer.cornerRadius = 20
+        yourScrollView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        yourScrollView.clipsToBounds = true
 
 
         tableView.layer.cornerRadius = 25
