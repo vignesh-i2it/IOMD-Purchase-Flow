@@ -10,20 +10,22 @@ import UIKit
 class MainNavController: UITabBarController {
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-           // let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-            let settingsVC = storyboard?.instantiateViewController(withIdentifier: "GreenScreenViewController") as! GreenScreenViewController
-            let homeVC = storyboard?.instantiateViewController(withIdentifier: "PurchaseViewController") as! PurchaseViewController
-            let userInfoVC = storyboard?.instantiateViewController(withIdentifier: "SavedInformationViewController") as! SavedInformationViewController
+        super.viewDidLoad()
+        
+        let settingsVC = storyboard?.instantiateViewController(withIdentifier: "GreenScreenViewController") as! GreenScreenViewController
+        let homeVC = storyboard?.instantiateViewController(withIdentifier: "PurchaseViewController") as! PurchaseViewController
+        let userInfoVC = storyboard?.instantiateViewController(withIdentifier: "SavedInformationViewController") as! SavedInformationViewController
 
+        viewControllers = [settingsVC, homeVC, userInfoVC]
+        
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.isHidden = true
 
-            viewControllers = [settingsVC, homeVC, userInfoVC]
-
-            selectedIndex = 1
-        }
+        selectedIndex = 1
     }
+}
 
 
 

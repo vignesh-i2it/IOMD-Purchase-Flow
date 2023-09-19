@@ -97,6 +97,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         view3.layer.cornerRadius = view3.frame.size.height / 2
         
         navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
         
         savedBackButton.addTarget(self, action: #selector(savedBackButtonTapped), for: .touchUpInside)
         
@@ -128,6 +130,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.layer.masksToBounds = false
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        
     }
     
     @objc func buttonTapped(_ sender: UIButton) {

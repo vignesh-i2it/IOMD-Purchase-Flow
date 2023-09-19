@@ -15,9 +15,11 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
     
     let sectionTitles = ["Header Section", "Items", "Name", "Card Details"]
 
-    let itemsSection = ["imagePlaceholder"]
+    let itemsSection = ["backgroundImage"]
 
     let headerSection = ["Ellipse", "Screenshot", "CurativeLifestyle", "www.curativelifestyle.com", "1/7/22 (4:33 pm)"]
+    
+    let imageSection = ["backgroundImage", "foodImage", "arrow", "Frozen Veggies Mix", "Grassfed ribeye steak", "Frozen Raspberries", "$2.39"]
 
     let nameSection = [["First", "Roberto"], ["Last", "Di Matteo"]]
 
@@ -28,32 +30,27 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
         ["CVV", "•••"],
         ["Zip Code", "21231"]
     ]
-
+    
+    var presentationTimer: Timer?
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
         
         navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.isHidden = true
+
+//        Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(presentBottomSheet), userInfo: nil, repeats: false)
         
-        Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(presentBottomSheet), userInfo: nil, repeats: false)
+//        presentationTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(presentBottomSheet), userInfo: nil, repeats: false)
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(navigateToSavedInformationViewController), name: NSNotification.Name("dismissed"), object: nil)
         
         let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissBottomSheet))
                 gestureRecognizer.direction = .down
                 view.addGestureRecognizer(gestureRecognizer)
-        
-        yourScrollView.layer.shadowColor = UIColor.black.cgColor
-        yourScrollView.layer.shadowOpacity = 0.5
-        yourScrollView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        yourScrollView.layer.shadowRadius = 4
-        yourScrollView.layer.masksToBounds = false
-
-        yourScrollView.layer.cornerRadius = 20
-        yourScrollView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        yourScrollView.clipsToBounds = true
-
 
         tableView.layer.cornerRadius = 25
         tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -68,12 +65,11 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
 
         backButton.alignImageToLeft()
 
-        tableView.layer.shadowColor = UIColor.black.cgColor
-            tableView.layer.shadowOpacity = 0.5
-            tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
-            tableView.layer.shadowRadius = 4
-            tableView.layer.masksToBounds = false
-
+//        tableView.layer.shadowColor = UIColor.black.cgColor
+//        tableView.layer.shadowOpacity = 0.5
+//        tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        tableView.layer.shadowRadius = 4
+//        tableView.layer.masksToBounds = false
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
@@ -82,7 +78,15 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        
         navigationItem.hidesBackButton = true
+        
+        presentationTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(presentBottomSheet), userInfo: nil, repeats: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presentationTimer?.invalidate()
     }
 
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -96,7 +100,7 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1 // Only one row in the header section
+            return 1
         case 1:
             return itemsSection.count
         case 2:
@@ -125,7 +129,13 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
         } else if indexPath.section == 1 {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as! ImageCell
-            cell.itemImageView.image = UIImage(named: itemsSection[indexPath.row])
+            cell.itemImageView.image = UIImage(named: imageSection[0])
+            cell.imageView1.image = UIImage(named: imageSection[1])
+            cell.imageView2.image = UIImage(named: imageSection[2])
+            cell.label1.text = imageSection[3]
+            cell.label2.text = imageSection[4]
+            cell.label3.text = imageSection[5]
+            cell.label4.text = imageSection[6]
             return cell
 
         } else if indexPath.section == 2 {
@@ -137,9 +147,6 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
             return cell
 
         } else {
-
-
-
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameCell
             cell.keyLabel.text = cardDetailsSection[indexPath.row][0]
@@ -155,8 +162,11 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-
+            
             return 80.0
+        } else if indexPath.section == 1 {
+            return 80.0
+            
         } else {
             return UITableView.automaticDimension
         }

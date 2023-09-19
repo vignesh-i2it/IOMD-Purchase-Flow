@@ -9,7 +9,6 @@ import UIKit
 
 class BottomSheetViewController: UIViewController {
     
-    
     @IBOutlet weak var firstSheet: UIView!
     @IBOutlet weak var nextButton1: UIButton!
     @IBOutlet weak var stackView1: UIStackView!
@@ -32,7 +31,9 @@ class BottomSheetViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(hex: "#1E1D21")
-        view.layer.cornerRadius = 25
+        //view.layer.cornerRadius = 25
+        view.roundCorners([.topLeft, .topRight], radius: 25)
+
         view.layer.masksToBounds = true
         
         nextButton1.layer.cornerRadius = nextButton1.frame.size.height / 2
@@ -51,6 +52,10 @@ class BottomSheetViewController: UIViewController {
         
         configureHeadingLabel()
         
+        configureView(withTag: 340, cornerCorners: [.topLeft, .topRight], backgroundColor: UIColor(hex: "#2C2B2F"))
+        configureView(withTag: 350, backgroundColor: UIColor(hex: "#45444E"))  // No corner radius
+        configureView(withTag: 360, cornerCorners: [.bottomLeft, .bottomRight], backgroundColor: UIColor(hex: "#2C2B2F"))
+        
         configureView(withTag: 140, cornerCorners: [.topLeft, .topRight], backgroundColor: UIColor(hex: "#2C2B2F"))
         configureView(withTag: 150, backgroundColor: UIColor(hex: "#45444E"))
         configureView(withTag: 160, cornerCorners: [.bottomLeft, .bottomRight], backgroundColor: UIColor(hex: "#2C2B2F"))
@@ -58,9 +63,7 @@ class BottomSheetViewController: UIViewController {
         configureView(withTag: 240, cornerCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], backgroundColor: UIColor(hex: "#FFFFFF"))
         configureView(withTag: 250, backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0))
         
-        configureView(withTag: 340, cornerCorners: [.topLeft, .topRight], backgroundColor: UIColor(hex: "#2C2B2F"))
-        configureView(withTag: 350, backgroundColor: UIColor(hex: "#45444E"))  // No corner radius
-        configureView(withTag: 360, cornerCorners: [.bottomLeft, .bottomRight], backgroundColor: UIColor(hex: "#2C2B2F"))
+       
     }
     
     private func configureStepStyle() {
@@ -99,7 +102,7 @@ class BottomSheetViewController: UIViewController {
         if let headingLabel3 = view.viewWithTag(320) as? UILabel {
             headingLabel3.font = UIFont(name: "Plus Jakarta Sans", size: 16)
             headingLabel3.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-                }
+        }
                 
         if let subheadingLabel3 = view.viewWithTag(330) as? UILabel {
             subheadingLabel3.font = UIFont(name: "Plus Jakarta Sans", size: 14)
@@ -108,6 +111,14 @@ class BottomSheetViewController: UIViewController {
     }
     
     private func configureView(withTag tag: Int, cornerCorners: UIRectCorner = [], backgroundColor: UIColor) {
+        
+        if let viewWithTag = stackView3.viewWithTag(tag) {
+            viewWithTag.backgroundColor = backgroundColor
+            if !cornerCorners.isEmpty {
+                viewWithTag.roundCorners(cornerCorners, radius: 8)
+            }
+            configureLabel(in: viewWithTag)
+        }
         
         if let viewWithTag = stackView1.viewWithTag(tag) {
             viewWithTag.backgroundColor = backgroundColor
@@ -125,13 +136,7 @@ class BottomSheetViewController: UIViewController {
             configureLabel(in: viewWithTag)
         }
         
-        if let viewWithTag = stackView3.viewWithTag(tag) {
-            viewWithTag.backgroundColor = backgroundColor
-            if !cornerCorners.isEmpty {
-                viewWithTag.roundCorners(cornerCorners, radius: 8)
-            }
-            configureLabel(in: viewWithTag)
-        }
+        
     }
     
     private func configureLabel(in view: UIView) {
