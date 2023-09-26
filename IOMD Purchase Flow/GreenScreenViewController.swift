@@ -17,12 +17,9 @@ class GreenScreenViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
-
     }
     
     @IBAction func startOverButtonTapped(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
-    
-
 }

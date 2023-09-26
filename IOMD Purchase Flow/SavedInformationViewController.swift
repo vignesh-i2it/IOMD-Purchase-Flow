@@ -50,6 +50,56 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             "expiryDate": "08/23"]
     ]
     
+    var tokenizedDataSections = [
+        ["section":"Header Section",
+         "heading": "no heading",
+         "subheading": "no subheading",
+         "image":"no image"
+        ],
+        ["section": "User Section",
+         "heading": "User",
+         "subheading": "This is your tokenized name to keep yours private.",
+         "image": "Tokenized User"
+        ],
+        ["section": "Address Section",
+         "heading": "Address",
+         "subheading": "Your tokenized address keeps your location safe.",
+         "image": "Tokenized Address"
+        ],
+        ["section":"Card Section",
+         "heading": "Card",
+         "subheading": "This tokenized card is linked to yours, keeping it safe.",
+         "image":"Tokenized Card"
+        ],
+        ["section":"Email Section",
+         "heading": "Email",
+         "subheading": "Using your personal email. No spam protection. ",
+         "image":"Tokenized Email"
+        ],
+        ["section":"Phone Section",
+         "heading": "Phone",
+         "subheading": "Your tokenized phone number hides your real one",
+         "image":"Tokenized phone"
+        ]
+    ]
+    
+    var tokenizedData: [[String: String]] = [
+        ["firstName": "Jack",
+         "lastName": "Dawson",
+         "cardNumber": "8765 5678 9862 6543",
+         "address": "2101 Chestnut St, Unit 624, Philadelphia PA 19103",
+         "expiryDate": "12/25",
+         "email": "jackdawson@gmail.com",
+         "phone": "8765234523"],
+        ["firstName": "Jill",
+         "lastName": "McGill",
+         "cardNumber": "9876 3452 6292 7318",
+         "expiryDate": "08/23",
+         "address": "4501 wall St, Unit 624, tenessee TA 19103",
+         "email": "jillmcgill@gmail.com",
+         "phone": "9387843231"]
+    ]
+    
     var currentEmailSection: [String] = []
     var currentPhoneSection: [String] = []
     var currentAddressSection: [String] = []
@@ -115,8 +165,10 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
         
+        tableView.register(TokenizedHeaderView.self, forHeaderFooterViewReuseIdentifier: "TokenizedHeaderView")
         
         savedBackButton.layer.cornerRadius = savedBackButton.frame.size.height / 2
         savedBackButton.layer.masksToBounds = true
@@ -130,11 +182,10 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.layer.masksToBounds = false
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
+        
         view1.isHidden = true
         view2.isHidden = true
         view3.isHidden = true
@@ -183,7 +234,9 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if isButton3Active {
+        
+        //if isButton3Active {
+        if button3.isSelected {
             return 1
         } else {
             return sectionTitles.count
@@ -191,7 +244,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isButton3Active {
+        //if isButton3Active {
+        if button3.isSelected {
             return cardData.count
         } else {
             switch section {
@@ -212,8 +266,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isButton3Active {
-            
+    // if isButton3Active {
+        if button3.isSelected {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CardsCellTableViewCell", for: indexPath) as! CardsCellTableViewCell
             
             let card = cardData[indexPath.row]
@@ -279,7 +333,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         
             return cell
             
-        } else {
+        } else if button1.isSelected {
             
             if indexPath.section == 0 {
     
@@ -316,6 +370,43 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     
                 return cell
             }
+            
+        } else {
+            
+            if indexPath.section == 0 {
+    
+                let cell = tableView.dequeueReusableCell(withIdentifier: "customHeaderCell", for: indexPath) as! CustomHeaderCell
+    
+                cell.label1.text = headerSection[2]
+                cell.label2.text = headerSection[3]
+                cell.label3.text = headerSection[4]
+    
+                cell.imageView1.image = UIImage(named: headerSection[0])
+                cell.imageView2.image = UIImage(named: headerSection[1])
+    
+                return cell
+    
+            } else {
+    
+                let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameCell
+    
+                cell.keyLabel.text = ""
+    
+                switch indexPath.section {
+    
+                case 1:
+                    cell.valueLabel.text = currentEmailSection[indexPath.row]
+                case 2:
+                    cell.valueLabel.text = currentPhoneSection[indexPath.row]
+                case 3:
+                    cell.valueLabel.text = currentAddressSection[indexPath.row]
+                case 4:
+                    cell.valueLabel.text = currentCardSection[indexPath.row]
+                default:
+                    cell.valueLabel.text = ""
+                }
+                return cell
+            }
         }
     }
     
@@ -331,17 +422,27 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         if section == 0 {
             return nil
         } else {
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
-            headerView.titleLabel.text = sectionTitles[section]
-            return headerView
+            
+//            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+            
+//            headerView.titleLabel.text = sectionTitles[section]
+//
+//            return headerView
+            
+            let tokenizedHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
+            tokenizedHeaderView.headingLabel.text = sectionTitles[section]
+            tokenizedHeaderView.subheadingLabel.text = sectionTitles[section]
+            
+            return tokenizedHeaderView
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         if section == 0 {
             return 0
         } else {
-            return 30.0
+            return 50.0
         }
     }
 }
