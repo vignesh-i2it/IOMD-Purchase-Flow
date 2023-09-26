@@ -114,7 +114,9 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "customHeaderCell", for: indexPath) as! CustomHeaderCell
 
             cell.label1.text = headerSection[2]
@@ -136,10 +138,10 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
             cell.label2.text = imageSection[4]
             cell.label3.text = imageSection[5]
             cell.label4.text = imageSection[6]
+            
             return cell
 
         } else if indexPath.section == 2 {
-
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameCell
             cell.keyLabel.text = nameSection[indexPath.row][0]
@@ -156,18 +158,22 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.valueLabel.text = cardDetailsSection[indexPath.row][1]
             }
             return cell
+            
         }
-
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         if indexPath.section == 0 {
             
             return 80.0
+            
         } else if indexPath.section == 1 {
+            
             return 80.0
             
         } else {
+            
             return UITableView.automaticDimension
         }
     }

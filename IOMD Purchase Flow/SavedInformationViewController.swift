@@ -53,33 +53,27 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     var tokenizedDataSections = [
         ["section":"Header Section",
          "heading": "no heading",
-         "subheading": "no subheading",
-         "image":"no image"
+         "subheading": "no subheading"
         ],
         ["section": "User Section",
          "heading": "User",
-         "subheading": "This is your tokenized name to keep yours private.",
-         "image": "Tokenized User"
+         "subheading": "This is your tokenized name to keep yours private."
         ],
         ["section": "Address Section",
          "heading": "Address",
-         "subheading": "Your tokenized address keeps your location safe.",
-         "image": "Tokenized Address"
+         "subheading": "Your tokenized address keeps your location safe."
         ],
         ["section":"Card Section",
          "heading": "Card",
-         "subheading": "This tokenized card is linked to yours, keeping it safe.",
-         "image":"Tokenized Card"
+         "subheading": "This tokenized card is linked to yours, keeping it safe."
         ],
         ["section":"Email Section",
          "heading": "Email",
-         "subheading": "Using your personal email. No spam protection. ",
-         "image":"Tokenized Email"
+         "subheading": "Using your personal email. No spam protection. "
         ],
         ["section":"Phone Section",
          "heading": "Phone",
-         "subheading": "Your tokenized phone number hides your real one",
-         "image":"Tokenized phone"
+         "subheading": "Your tokenized phone number hides your real one"
         ]
     ]
     
@@ -125,6 +119,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         currentPhoneSection = phoneSection2
         currentAddressSection = addressSection2
         currentCardSection = cardDetailsSection2
+        
+        
         
         defaultView1.layer.cornerRadius = defaultView1.frame.size.height / 2
         defaultView1.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
@@ -199,10 +195,10 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             view1.isHidden = false
         } else if sender == button2 {
             isButton3Active = false
-            currentEmailSection = emailSection2
-            currentPhoneSection = phoneSection2
-            currentAddressSection = addressSection2
-            currentCardSection = cardDetailsSection2
+//            currentEmailSection = emailSection2
+//            currentPhoneSection = phoneSection2
+//            currentAddressSection = addressSection2
+//            currentCardSection = cardDetailsSection2
             view2.isHidden = false
         } else if sender == button3 {
             isButton3Active = true
@@ -238,6 +234,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         //if isButton3Active {
         if button3.isSelected {
             return 1
+        } else if button2.isSelected {
+            return tokenizedDataSections.count - 1
         } else {
             return sectionTitles.count
         }
@@ -247,6 +245,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         //if isButton3Active {
         if button3.isSelected {
             return cardData.count
+        } else if button2.isSelected{
+            return tokenizedData.count
         } else {
             switch section {
             case 0:
@@ -266,7 +266,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    // if isButton3Active {
+        
         if button3.isSelected {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CardsCellTableViewCell", for: indexPath) as! CardsCellTableViewCell
             
@@ -279,10 +279,12 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             cell.cardNumberLabel.text = cell.isCardVisible ? card["cardNumber"] : maskCardNumber(cardNumber: card["cardNumber"] ?? "")
             
             func maskCardNumber(cardNumber: String) -> String {
+                
                 if let lastFourDigits = cardNumber.range(of: "\\d{4}$", options: .regularExpression) {
                     let maskedSection = "•••• •••• •••• "
                     return maskedSection + cardNumber[lastFourDigits]
                 }
+                
                 return cardNumber
             }
 
@@ -388,22 +390,29 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     
             } else {
     
-                let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameCell
-    
-                cell.keyLabel.text = ""
-    
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TokenizedTableViewCell", for: indexPath) as! TokenizedTableViewCell
+                    
+                let card = tokenizedData[indexPath.row]
+                
                 switch indexPath.section {
     
                 case 1:
-                    cell.valueLabel.text = currentEmailSection[indexPath.row]
+                    cell.iconView.image = UIImage(named: "Tokenized User")
+                    cell.value.text = "\(card["firstName"] ?? "") \(card["lastName"] ?? "")"
                 case 2:
-                    cell.valueLabel.text = currentPhoneSection[indexPath.row]
+                    cell.iconView.image = UIImage(named: "Tokenized Address")
+                    cell.value.text = card["address"]
                 case 3:
-                    cell.valueLabel.text = currentAddressSection[indexPath.row]
+                    cell.iconView.image = UIImage(named: "Tokenized Card")
+                    cell.value.text = card["cardNumber"]
                 case 4:
-                    cell.valueLabel.text = currentCardSection[indexPath.row]
+                    cell.iconView.image = UIImage(named: "Tokenized Email")
+                    cell.value.text = card["email"]
+                case 5:
+                    cell.iconView.image = UIImage(named: "Tokenized Phone")
+                    cell.value.text = card["phone"]
                 default:
-                    cell.valueLabel.text = ""
+                    cell.value.text = ""
                 }
                 return cell
             }
@@ -419,22 +428,35 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return nil
-        } else {
-            
-//            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
-            
-//            headerView.titleLabel.text = sectionTitles[section]
+        
+        
+//        if button1.isSelected {
 //
-//            return headerView
+//            if section == 0 {
+//                return nil
+//            } else {
+//
+//                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+//
+//                headerView.titleLabel.text = sectionTitles[section]
+//
+//                return headerView
+//
+//            }
+//
+//        } else if button2.isSelected {
             
-            let tokenizedHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
-            tokenizedHeaderView.headingLabel.text = sectionTitles[section]
-            tokenizedHeaderView.subheadingLabel.text = sectionTitles[section]
-            
-            return tokenizedHeaderView
-        }
+            if section == 0 {
+                return nil
+            } else {
+                
+                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
+                headerView.headingLabel.text = tokenizedDataSections[section]["heading"]
+                headerView.subheadingLabel.text = tokenizedDataSections[section]["subheading"]
+                
+                return headerView
+            }
+        //}
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
