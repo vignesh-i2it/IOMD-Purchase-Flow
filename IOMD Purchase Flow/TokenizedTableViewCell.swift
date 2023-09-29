@@ -17,7 +17,4 @@ class TokenizedTableViewCell: UITableViewCell {
     
         
    }
-
-
-
 }

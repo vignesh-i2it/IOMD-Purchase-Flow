@@ -77,23 +77,18 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         ]
     ]
     
-    var tokenizedData: [[String: String]] = [
-        ["firstName": "Jack",
-         "lastName": "Dawson",
-         "cardNumber": "8765 5678 9862 6543",
-         "address": "2101 Chestnut St, Unit 624, Philadelphia PA 19103",
-         "expiryDate": "12/25",
-         "email": "jackdawson@gmail.com",
-         "phone": "8765234523"],
-        ["firstName": "Jill",
-         "lastName": "McGill",
-         "cardNumber": "9876 3452 6292 7318",
-         "expiryDate": "08/23",
-         "address": "4501 wall St, Unit 624, tenessee TA 19103",
-         "email": "jillmcgill@gmail.com",
-         "phone": "9387843231"]
+    var tokenizedData: [String: [String]] = [
+        "user": ["Jack Dawson"],
+        "fullName":["Jack Liam Dawson", "qazxsw ","qazxsw ","qazxsw ","qazxsw ","qazxsw ","qazxsw "],
+        "address": ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"],
+        "cardNumber": ["8765 5678 9862 6543", "1234 5678 9012 3456"],
+        "email": ["jackdawson@gmail.com", "jack.dawson@example.com"],
+        "phone": ["8734234523", "1234567890"]
     ]
     
+    
+    var sectionsExpanded: [Int: Bool] = [:]
+
     var currentEmailSection: [String] = []
     var currentPhoneSection: [String] = []
     var currentAddressSection: [String] = []
@@ -104,7 +99,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+                
         button2.isSelected = true
         view2.isHidden = false
         
@@ -195,10 +190,6 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             view1.isHidden = false
         } else if sender == button2 {
             isButton3Active = false
-//            currentEmailSection = emailSection2
-//            currentPhoneSection = phoneSection2
-//            currentAddressSection = addressSection2
-//            currentCardSection = cardDetailsSection2
             view2.isHidden = false
         } else if sender == button3 {
             isButton3Active = true
@@ -235,7 +226,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         if button3.isSelected {
             return 1
         } else if button2.isSelected {
-            return tokenizedDataSections.count - 1
+            return tokenizedDataSections.count
         } else {
             return sectionTitles.count
         }
@@ -246,7 +237,12 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         if button3.isSelected {
             return cardData.count
         } else if button2.isSelected{
-            return tokenizedData.count
+            if section == 0 {
+                return 1
+            } else {
+                let key = Array(tokenizedData.keys)[section]
+                return (sectionsExpanded[section] ?? false) ? (tokenizedData[key]?.count ?? 0) : 1
+            }
         } else {
             switch section {
             case 0:
@@ -355,6 +351,8 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
                 let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameCell
     
                 cell.keyLabel.text = ""
+                
+                cell.backgroundColor = .clear
     
                 switch indexPath.section {
     
@@ -392,29 +390,41 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TokenizedTableViewCell", for: indexPath) as! TokenizedTableViewCell
                     
-                let card = tokenizedData[indexPath.row]
+                //let card = tokenizedData[indexPath.row]
+                
+                let key = Array(tokenizedData.keys)[indexPath.section]
+                _ = tokenizedData[key]?[indexPath.row] ?? ""
+                
+                
                 
                 switch indexPath.section {
+                    
+                    
     
                 case 1:
                     cell.iconView.image = UIImage(named: "Tokenized User")
-                    cell.value.text = "\(card["firstName"] ?? "") \(card["lastName"] ?? "")"
+                    cell.value.text = tokenizedData["fullName"]?[indexPath.row] ?? ""
                 case 2:
                     cell.iconView.image = UIImage(named: "Tokenized Address")
-                    cell.value.text = card["address"]
+                    cell.value.text = tokenizedData["address"]?[indexPath.row] ?? ""
                 case 3:
                     cell.iconView.image = UIImage(named: "Tokenized Card")
-                    cell.value.text = card["cardNumber"]
+                    cell.value.text = tokenizedData["cardNumber"]?[indexPath.row] ?? ""
                 case 4:
                     cell.iconView.image = UIImage(named: "Tokenized Email")
-                    cell.value.text = card["email"]
+                    cell.value.text = tokenizedData["email"]?[indexPath.row] ?? ""
                 case 5:
                     cell.iconView.image = UIImage(named: "Tokenized Phone")
-                    cell.value.text = card["phone"]
+                    cell.value.text = tokenizedData["phone"]?[indexPath.row] ?? ""
                 default:
                     cell.value.text = ""
                 }
+                
+                let cellBackgroundView = SectionBackgroundView()
+                cell.backgroundView = cellBackgroundView
+                
                 return cell
+
             }
         }
     }
@@ -430,33 +440,66 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         
-//        if button1.isSelected {
-//
-//            if section == 0 {
-//                return nil
-//            } else {
-//
-//                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
-//
-//                headerView.titleLabel.text = sectionTitles[section]
-//
-//                return headerView
-//
-//            }
-//
-//        } else if button2.isSelected {
+        //        if button1.isSelected {
+        //
+        //            if section == 0 {
+        //                return nil
+        //            } else {
+        //
+        //                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+        //
+        //                headerView.titleLabel.text = sectionTitles[section]
+        //
+        //                return headerView
+        //
+        //            }
+        //
+        //        } else if button2.isSelected {
+        
+        if section == 0 {
+            return nil
+        } else {
             
-            if section == 0 {
-                return nil
-            } else {
-                
-                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
-                headerView.headingLabel.text = tokenizedDataSections[section]["heading"]
-                headerView.subheadingLabel.text = tokenizedDataSections[section]["subheading"]
-                
-                return headerView
-            }
-        //}
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
+                    headerView.headingLabel.text = tokenizedDataSections[section]["heading"]
+                    headerView.subheadingLabel.text = tokenizedDataSections[section]["subheading"]
+                    headerView.dropDownButton.tag = section
+                    headerView.dropDownButton.addTarget(self, action: #selector(toggleSection), for: .touchUpInside)
+
+                    headerView.dropDownButton.setTitle(sectionsExpanded[section] ?? false ? "▲" : "▼", for: .normal)
+
+                    let sectionBackgroundView = SectionBackgroundView()
+          
+            
+                    sectionBackgroundView.addSubview(headerView)
+                    
+                    headerView.translatesAutoresizingMaskIntoConstraints = false
+                    NSLayoutConstraint.activate([
+                        headerView.topAnchor.constraint(equalTo: sectionBackgroundView.topAnchor),
+                        headerView.leadingAnchor.constraint(equalTo: sectionBackgroundView.leadingAnchor),
+                        headerView.trailingAnchor.constraint(equalTo: sectionBackgroundView.trailingAnchor),
+                        headerView.bottomAnchor.constraint(equalTo: sectionBackgroundView.bottomAnchor),
+                    ])
+
+                    return sectionBackgroundView
+            
+//            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
+//            headerView.headingLabel.text = tokenizedDataSections[section]["heading"]
+//            headerView.subheadingLabel.text = tokenizedDataSections[section]["subheading"]
+//            headerView.dropDownButton.tag = section
+//            headerView.dropDownButton.addTarget(self, action: #selector(toggleSection), for: .touchUpInside)
+//
+//            headerView.dropDownButton.setTitle(sectionsExpanded[section] ?? false ? "▲" : "▼", for: .normal)
+//
+//            return headerView
+//
+        }
+    }
+    
+    @objc func toggleSection(_ sender: UIButton) {
+        let section = sender.tag
+        sectionsExpanded[section] = !(sectionsExpanded[section] ?? false)
+        tableView.reloadSections([section], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

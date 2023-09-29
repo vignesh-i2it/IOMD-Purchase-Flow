@@ -24,6 +24,7 @@
 		2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */; };
 		2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */; };
 		2FA6F6932AB489C6005772AE /* GreenScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */; };
+		2FAC483D2AC6F64100C82A8A /* SectionBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC483C2AC6F64100C82A8A /* SectionBackgroundView.swift */; };
 		2FB8021E2ABC293B00277817 /* TokenizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8021D2ABC293B00277817 /* TokenizedTableViewCell.swift */; };
 		2FB802202ABC35DB00277817 /* TokenizedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8021F2ABC35DB00277817 /* TokenizedHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedInformationViewController.swift; sourceTree = "<group>"; };
 		2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCellTableViewCell.swift; sourceTree = "<group>"; };
 		2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenScreenViewController.swift; sourceTree = "<group>"; };
+		2FAC483C2AC6F64100C82A8A /* SectionBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBackgroundView.swift; sourceTree = "<group>"; };
 		2FB8021D2ABC293B00277817 /* TokenizedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedTableViewCell.swift; sourceTree = "<group>"; };
 		2FB8021F2ABC35DB00277817 /* TokenizedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 				2F3D0F0D2AAB45720063EEF2 /* NameCell.swift */,
 				2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */,
 				2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */,
+				2FAC483C2AC6F64100C82A8A /* SectionBackgroundView.swift */,
 				2FB8021D2ABC293B00277817 /* TokenizedTableViewCell.swift */,
 				2F3D0F0B2AAB44560063EEF2 /* PurchaseViewController.swift */,
 				2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */,
@@ -179,6 +182,7 @@
 			files = (
 				2F3D0F122AAB46340063EEF2 /* CustomHeaderView.swift in Sources */,
 				2F3D0F102AAB45E40063EEF2 /* CustomHeaderCell.swift in Sources */,
+				2FAC483D2AC6F64100C82A8A /* SectionBackgroundView.swift in Sources */,
 				2F3D0F142AAB465B0063EEF2 /* ImageCell.swift in Sources */,
 				2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */,
 				2F3D0F0C2AAB44560063EEF2 /* PurchaseViewController.swift in Sources */,
