@@ -7,7 +7,16 @@
 
 import UIKit
 
+struct User {
+    var fullName: [String]
+    var address: [String]
+    var cardNumber: [String]
+    var email: [String]
+    var phone: [String]
+}
+
 class SavedInformationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -77,23 +86,29 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         ]
     ]
     
-    var tokenizedData: [String: [String]] = [
-        "user": ["Jack Dawson"],
-        "fullName":["Jack Liam Dawson", "qazxsw ","qazxsw ","qazxsw ","qazxsw ","qazxsw ","qazxsw "],
-        "address": ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"],
-        "cardNumber": ["8765 5678 9862 6543", "1234 5678 9012 3456"],
-        "email": ["jackdawson@gmail.com", "jack.dawson@example.com"],
-        "phone": ["8734234523", "1234567890"]
+//    var tokenizedData: [String: [String]] = [
+//        "user": ["Jack Dawson"],
+//        "fullName":["Jack Liam Dawson", "qazxsw ","qazxsw ","qazxsw ","qazxsw ","qazxsw ","qazxsw "],
+//        "address": ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"],
+//        "cardNumber": ["8765 5678 9862 6543", "1234 5678 9012 3456"],
+//        "email": ["jackdawson@gmail.com", "jack.dawson@example.com"],
+//        "phone": ["8734234523", "1234567890"]
+//    ]
+    
+    
+    var usersData: [User] = [
+        User(fullName: ["Jack Dawson", "qazxsw ", "qazxsw ", "qazxsw ", "qazxsw ", "qazxsw ", "qazxsw "],
+             address: ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"],
+             cardNumber: ["8765 5678 9862 6543", "1234 5678 9012 3456"],
+             email: ["jackdawson@gmail.com", "jack.dawson@example.com"],
+             phone: ["8734234523", "1234567890"])
     ]
     
-    
     var sectionsExpanded: [Int: Bool] = [:]
-
     var currentEmailSection: [String] = []
     var currentPhoneSection: [String] = []
     var currentAddressSection: [String] = []
     var currentCardSection: [String] = []
-    
     var isButton3Active = false
     
     override func viewDidLoad() {
@@ -114,8 +129,6 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         currentPhoneSection = phoneSection2
         currentAddressSection = addressSection2
         currentCardSection = cardDetailsSection2
-        
-        
         
         defaultView1.layer.cornerRadius = defaultView1.frame.size.height / 2
         defaultView1.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
@@ -156,6 +169,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         tableView.delegate = self
         tableView.dataSource = self
+
         
         tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
         
@@ -226,7 +240,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         if button3.isSelected {
             return 1
         } else if button2.isSelected {
-            return tokenizedDataSections.count
+            return usersData.count
         } else {
             return sectionTitles.count
         }
@@ -240,8 +254,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             if section == 0 {
                 return 1
             } else {
-                let key = Array(tokenizedData.keys)[section]
-                return (sectionsExpanded[section] ?? false) ? (tokenizedData[key]?.count ?? 0) : 1
+                return usersData[section].fullName.count
             }
         } else {
             switch section {
@@ -367,7 +380,6 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
                 default:
                     cell.valueLabel.text = ""
                 }
-    
                 return cell
             }
             
@@ -389,42 +401,42 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
             } else {
     
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TokenizedTableViewCell", for: indexPath) as! TokenizedTableViewCell
+                
+
                     
-                //let card = tokenizedData[indexPath.row]
-                
-                let key = Array(tokenizedData.keys)[indexPath.section]
-                _ = tokenizedData[key]?[indexPath.row] ?? ""
-                
+      
+                let user = usersData[indexPath.section]
+                    cell.textLabel?.text = user.fullName[indexPath.row]
                 
                 
                 switch indexPath.section {
-                    
-                    
-    
-                case 1:
-                    cell.iconView.image = UIImage(named: "Tokenized User")
-                    cell.value.text = tokenizedData["fullName"]?[indexPath.row] ?? ""
-                case 2:
-                    cell.iconView.image = UIImage(named: "Tokenized Address")
-                    cell.value.text = tokenizedData["address"]?[indexPath.row] ?? ""
-                case 3:
-                    cell.iconView.image = UIImage(named: "Tokenized Card")
-                    cell.value.text = tokenizedData["cardNumber"]?[indexPath.row] ?? ""
-                case 4:
-                    cell.iconView.image = UIImage(named: "Tokenized Email")
-                    cell.value.text = tokenizedData["email"]?[indexPath.row] ?? ""
-                case 5:
-                    cell.iconView.image = UIImage(named: "Tokenized Phone")
-                    cell.value.text = tokenizedData["phone"]?[indexPath.row] ?? ""
-                default:
-                    cell.value.text = ""
-                }
-                
+                        case 0:
+                            cell.iconView.image = UIImage(named: "Tokenized User")
+                            cell.value.text = user.fullName[indexPath.row]
+                        case 1:
+                            cell.iconView.image = UIImage(named: "Tokenized Address")
+                            cell.value.text = user.address[indexPath.row]
+                        case 2:
+                            cell.iconView.image = UIImage(named: "Tokenized Card")
+                            cell.value.text = user.cardNumber[indexPath.row]
+                        case 3:
+                            cell.iconView.image = UIImage(named: "Tokenized Email")
+                            cell.value.text = user.email[indexPath.row]
+                        case 4:
+                            cell.iconView.image = UIImage(named: "Tokenized Phone")
+                            cell.value.text = user.phone[indexPath.row]
+                        default:
+                            cell.value.text = ""
+                        }
+                ///
                 let cellBackgroundView = SectionBackgroundView()
-                cell.backgroundView = cellBackgroundView
+                //cell.backgroundView = cellBackgroundView
                 
-                return cell
+                cellBackgroundView.isHeader = false // Not a header
+                    cellBackgroundView.isLastRow = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 // Check if it's the last row in the section
+                    cell.backgroundView = cellBackgroundView
 
+                return cell
             }
         }
     }
@@ -468,10 +480,11 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
 
                     headerView.dropDownButton.setTitle(sectionsExpanded[section] ?? false ? "▲" : "▼", for: .normal)
 
-                    let sectionBackgroundView = SectionBackgroundView()
-          
-            
+            let sectionBackgroundView = SectionBackgroundView()
+                    sectionBackgroundView.isHeader = true // It's a header
                     sectionBackgroundView.addSubview(headerView)
+            
+          
                     
                     headerView.translatesAutoresizingMaskIntoConstraints = false
                     NSLayoutConstraint.activate([
@@ -495,6 +508,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
 //
         }
     }
+
     
     @objc func toggleSection(_ sender: UIButton) {
         let section = sender.tag

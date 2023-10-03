@@ -14,7 +14,6 @@ class TokenizedTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-    
-        
-   }
+    }
 }
+

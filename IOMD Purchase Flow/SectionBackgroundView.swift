@@ -9,21 +9,37 @@ import UIKit
 
 class SectionBackgroundView: UIView {
     
- 
-
+    var isHeader = false
+    var isLastRow = false
+    
     override init(frame: CGRect) {
-            super.init(frame: frame)
-            setupUI()
-        }
+        super.init(frame: frame)
+        setupUI()
+    }
 
-        required init?(coder: NSCoder) {
-            super.init(coder: coder)
-            setupUI()
-        }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
 
-        private func setupUI() {
-          
+    private func setupUI() {
+        //layer.cornerRadius = 10
+        backgroundColor = UIColor(hex: "#EDEDED")
+    }
+    
+    override func layoutSubviews() {
+
+        super.layoutSubviews()
+
+        if isHeader {
             layer.cornerRadius = 10
-            backgroundColor = UIColor(hex: "#EDEDED")
+            layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        } else if isLastRow {
+            layer.cornerRadius = 10
+            layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        } else {
+            layer.cornerRadius = 0
+            layer.maskedCorners = []
         }
+    }
 }

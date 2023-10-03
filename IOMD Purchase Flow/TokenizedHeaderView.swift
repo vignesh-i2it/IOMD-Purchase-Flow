@@ -32,7 +32,7 @@ class TokenizedHeaderView: UITableViewHeaderFooterView {
         let button = UIButton(type: .system)
         button.tintColor = UIColor.black
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("▼", for: .normal) // For simplicity, using Unicode for down arrow.
+        button.setTitle("▼", for: .normal)
         return button
     }()
     
