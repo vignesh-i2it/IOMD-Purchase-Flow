@@ -24,7 +24,7 @@ class SectionBackgroundView: UIView {
 
     private func setupUI() {
         //layer.cornerRadius = 10
-        backgroundColor = UIColor(hex: "#EDEDED")
+        backgroundColor = UIColor(hex: "#FFFFFF")
     }
     
     override func layoutSubviews() {

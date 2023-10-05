@@ -22,6 +22,12 @@
 		2F3D0F142AAB465B0063EEF2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */; };
 		2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */; };
 		2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */; };
+		2F964C0E2ACEBC69004E88F7 /* myTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F964C0C2ACEBC69004E88F7 /* myTabCell.swift */; };
+		2F964C0F2ACEBC69004E88F7 /* myTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F964C0D2ACEBC69004E88F7 /* myTabCell.xib */; };
+		2F964C122ACECBC6004E88F7 /* myCustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F964C102ACECBC6004E88F7 /* myCustomHeaderCell.swift */; };
+		2F964C132ACECBC6004E88F7 /* myCustomHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F964C112ACECBC6004E88F7 /* myCustomHeaderCell.xib */; };
+		2F964C162ACEE373004E88F7 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F964C142ACEE373004E88F7 /* CardTableViewCell.swift */; };
+		2F964C172ACEE373004E88F7 /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F964C152ACEE373004E88F7 /* CardTableViewCell.xib */; };
 		2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */; };
 		2FA6F6932AB489C6005772AE /* GreenScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */; };
 		2FAC483D2AC6F64100C82A8A /* SectionBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC483C2AC6F64100C82A8A /* SectionBackgroundView.swift */; };
@@ -47,6 +53,12 @@
 		2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedInformationViewController.swift; sourceTree = "<group>"; };
+		2F964C0C2ACEBC69004E88F7 /* myTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTabCell.swift; sourceTree = "<group>"; };
+		2F964C0D2ACEBC69004E88F7 /* myTabCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myTabCell.xib; sourceTree = "<group>"; };
+		2F964C102ACECBC6004E88F7 /* myCustomHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCustomHeaderCell.swift; sourceTree = "<group>"; };
+		2F964C112ACECBC6004E88F7 /* myCustomHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myCustomHeaderCell.xib; sourceTree = "<group>"; };
+		2F964C142ACEE373004E88F7 /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		2F964C152ACEE373004E88F7 /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
 		2F9CB80F2AB0618100D3D849 /* CardsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCellTableViewCell.swift; sourceTree = "<group>"; };
 		2FA6F6922AB489C6005772AE /* GreenScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenScreenViewController.swift; sourceTree = "<group>"; };
 		2FAC483C2AC6F64100C82A8A /* SectionBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBackgroundView.swift; sourceTree = "<group>"; };
@@ -105,6 +117,12 @@
 				2F3D0EFE2AAB410E0063EEF2 /* Assets.xcassets */,
 				2F3D0F002AAB410E0063EEF2 /* LaunchScreen.storyboard */,
 				2F3D0F032AAB410E0063EEF2 /* Info.plist */,
+				2F964C0C2ACEBC69004E88F7 /* myTabCell.swift */,
+				2F964C102ACECBC6004E88F7 /* myCustomHeaderCell.swift */,
+				2F964C142ACEE373004E88F7 /* CardTableViewCell.swift */,
+				2F964C152ACEE373004E88F7 /* CardTableViewCell.xib */,
+				2F964C112ACECBC6004E88F7 /* myCustomHeaderCell.xib */,
+				2F964C0D2ACEBC69004E88F7 /* myTabCell.xib */,
 			);
 			path = "IOMD Purchase Flow";
 			sourceTree = "<group>";
@@ -169,7 +187,10 @@
 			files = (
 				2F3D0F022AAB410E0063EEF2 /* LaunchScreen.storyboard in Resources */,
 				2F3D0EFF2AAB410E0063EEF2 /* Assets.xcassets in Resources */,
+				2F964C0F2ACEBC69004E88F7 /* myTabCell.xib in Resources */,
 				2F3D0EFD2AAB410C0063EEF2 /* Main.storyboard in Resources */,
+				2F964C132ACECBC6004E88F7 /* myCustomHeaderCell.xib in Resources */,
+				2F964C172ACEE373004E88F7 /* CardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +206,7 @@
 				2FAC483D2AC6F64100C82A8A /* SectionBackgroundView.swift in Sources */,
 				2F3D0F142AAB465B0063EEF2 /* ImageCell.swift in Sources */,
 				2F9CB8102AB0618100D3D849 /* CardsCellTableViewCell.swift in Sources */,
+				2F964C122ACECBC6004E88F7 /* myCustomHeaderCell.swift in Sources */,
 				2F3D0F0C2AAB44560063EEF2 /* PurchaseViewController.swift in Sources */,
 				2FB802202ABC35DB00277817 /* TokenizedHeaderView.swift in Sources */,
 				2F3D0EFA2AAB410C0063EEF2 /* ViewController.swift in Sources */,
@@ -194,7 +216,9 @@
 				2F3D0F0E2AAB45720063EEF2 /* NameCell.swift in Sources */,
 				2F182ECC2AB97DDA00FFCD7B /* MainNavController.swift in Sources */,
 				2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */,
+				2F964C162ACEE373004E88F7 /* CardTableViewCell.swift in Sources */,
 				2FB8021E2ABC293B00277817 /* TokenizedTableViewCell.swift in Sources */,
+				2F964C0E2ACEBC69004E88F7 /* myTabCell.swift in Sources */,
 				2F3D0EF82AAB410C0063EEF2 /* SceneDelegate.swift in Sources */,
 				2F3D0F0A2AAB43220063EEF2 /* LoadingScreenViewController.swift in Sources */,
 			);
