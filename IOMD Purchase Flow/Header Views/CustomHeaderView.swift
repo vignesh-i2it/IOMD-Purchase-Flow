@@ -14,8 +14,8 @@ class CustomHeaderView: UITableViewHeaderFooterView {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.font = UIFont(name: "Plus Jakarta Sans", size: 16)
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont(name: "Plus Jakarta Sans", size: 17)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
 
         return label
     }()

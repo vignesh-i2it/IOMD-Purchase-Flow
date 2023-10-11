@@ -11,6 +11,8 @@ class GreenScreenViewController: UIViewController {
 
     @IBOutlet weak var startOverButton: UIButton!
     
+    @IBOutlet weak var cardActivityButton: UIButton!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -22,4 +24,19 @@ class GreenScreenViewController: UIViewController {
     @IBAction func startOverButtonTapped(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
+    
+    @IBAction func cardActivityButtonTapped(_ sender: Any) {
+        
+        let cardActivityScreen = storyboard?.instantiateViewController(withIdentifier: "UsedCardsViewController") as! UsedCardsViewController
+
+        self.navigationController?.pushViewController(cardActivityScreen, animated: true)
+        
+        
+    }
+
+    
+    
+    
+    
+    
 }

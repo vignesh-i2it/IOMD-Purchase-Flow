@@ -25,16 +25,14 @@ class LoadingScreenViewController: UIViewController {
     
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
-
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
         
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
-
     }
     
     @objc func navigateToPurchaseViewController() {
@@ -46,7 +44,4 @@ class LoadingScreenViewController: UIViewController {
         self.navigationController?.pushViewController(tabBar, animated: true)
         
     }
-
-  
-
 }
