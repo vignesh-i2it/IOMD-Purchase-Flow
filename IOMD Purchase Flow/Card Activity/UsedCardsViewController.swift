@@ -9,10 +9,29 @@ import UIKit
 
 class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var headingView: UIView!
     @IBOutlet weak var shadowView: UIView!
+    
+    @IBOutlet weak var mainView: UIView!
+    
+    @IBOutlet weak var table1Button: UIButton!
+    @IBOutlet weak var table2Button: UIButton!
+    @IBOutlet weak var table3Button: UIButton!
+    
+    @IBOutlet weak var button1View: UIView!
+    @IBOutlet weak var button2View: UIView!
+    @IBOutlet weak var button3View: UIView!
+    
+    @IBOutlet weak var scrollView: UIView!
+    
+    @IBOutlet weak var horizontalScrollView: UIScrollView!
+    
+    @IBOutlet weak var tableView1: UITableView!
+    @IBOutlet weak var tableView2: UITableView!
+    @IBOutlet weak var tableView3: UITableView!
+    
+    var currentTableView: UITableView?
     
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -23,25 +42,102 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
     var lastTransaction: [[String: String]] = []
     var otherTransactions: [[String: String]] = []
         
-    //sample transactions
-//    let transactions = [
-//        ["merchant": "curativelifestyle", "cardNumber": "4111 1111 1111 1111", "cardId": "123", "timeStamp": "2023-10-06T12:22:12"],
-//        ["merchant": "coravin", "cardId": "123", "cardNumber": "4111 1111 1111 1111", "timeStamp": "2023-10-04T14:22:12"],
-//        ["cardId": "789", "cardNumber": "4111 1111 1111 3333", "merchant": "curativelifestyle", "timeStamp": "2023-09-09T20:22:12"],
-//        ["timeStamp": "2023-08-05T19:22:12", "cardId": "456", "merchant": "coravin", "cardNumber": "4111 1111 1111 2222"]
-//    ]
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         setupUI()
         fetchDataAndPrepareData()
+        
+        horizontalScrollView.delegate = self
+        
+        horizontalScrollView.setContentOffset(CGPoint(x: horizontalScrollView.frame.width, y: 0), animated: false)
+    }
+    
+    @IBAction func table1ButtonTapped(_ sender: UIButton) {
+        scrollToTableView(tableView1)
+        button1View.isHidden = false
+        button2View.isHidden = true
+        button3View.isHidden = true
+    }
+    
+    @IBAction func table2ButtonTapped(_ sender: UIButton) {
+        scrollToTableView(tableView2)
+        button1View.isHidden = true
+        button2View.isHidden = false
+        button3View.isHidden = true
+    }
+    
+    @IBAction func table3ButtonTapped(_ sender: UIButton) {
+        scrollToTableView(tableView3)
+        button1View.isHidden = true
+        button2View.isHidden = true
+        button3View.isHidden = false
+    }
+
+    func scrollToTableView(_ tableView: UITableView) {
+        if let index = [tableView1, tableView2, tableView3].firstIndex(of: tableView) {
+            currentTableView = tableView
+            let xOffset = CGFloat(index) * horizontalScrollView.frame.width
+            horizontalScrollView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageWidth = horizontalScrollView.frame.width
+        let currentPage = Int(horizontalScrollView.contentOffset.x / pageWidth)
+
+        switch currentPage {
+        case 0:
+            currentTableView = tableView1
+            button1View.isHidden = false
+            button2View.isHidden = true
+            button3View.isHidden = true
+        case 1:
+            currentTableView = tableView2
+            button1View.isHidden = true
+            button2View.isHidden = false
+            button3View.isHidden = true
+        case 2:
+            currentTableView = tableView3
+            button1View.isHidden = true
+            button2View.isHidden = true
+            button3View.isHidden = false
+        default:
+            break
+        }
     }
     
     func setupUI() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+        
+        button1View.isHidden = true
+        button3View.isHidden = true
+        
+        button1View.layer.cornerRadius = button1View.frame.size.height / 2
+        button2View.layer.cornerRadius = button2View.frame.size.height / 2
+        button3View.layer.cornerRadius = button3View.frame.size.height / 2
+        
+        addShadow(to: button1View)
+        addShadow(to: button2View)
+        addShadow(to: button3View)
+        
+        table1Button.layer.cornerRadius = table1Button.frame.size.height / 2
+        table1Button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        
+        table3Button.layer.cornerRadius = table3Button.frame.size.height / 2
+        table3Button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        
+        tableView1.delegate = self
+        tableView1.dataSource = self
+        self.tableView1.contentInset = UIEdgeInsets(top: 85, left: 0, bottom: 0, right: 0)
+        
+        tableView2.delegate = self
+        tableView2.dataSource = self
+        self.tableView2.contentInset = UIEdgeInsets(top: 85, left: 0, bottom: 0, right: 0)
+        
+        tableView3.delegate = self
+        tableView3.dataSource = self
+        self.tableView3.contentInset = UIEdgeInsets(top: 85, left: 0, bottom: 0, right: 0)
+        
         headingView.layer.cornerRadius = headingView.frame.size.height / 2
         headingView.layer.masksToBounds = false
         headingView.backgroundColor = UIColor(hex: "#8877F2")
@@ -52,10 +148,25 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
         headingView.layer.shadowRadius = 4.0
         headingView.layer.masksToBounds = false
         
-        tableView.layer.cornerRadius = 25
-        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        tableView.clipsToBounds = true
-        tableView.layer.masksToBounds = true
+        tableView1.layer.cornerRadius = 25
+        tableView1.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        tableView1.clipsToBounds = true
+        tableView1.layer.masksToBounds = true
+        
+        tableView2.layer.cornerRadius = 25
+        tableView2.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        tableView2.clipsToBounds = true
+        tableView2.layer.masksToBounds = true
+        
+        tableView3.layer.cornerRadius = 25
+        tableView3.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        tableView3.clipsToBounds = true
+        tableView3.layer.masksToBounds = true
+        
+        scrollView.layer.cornerRadius = 25
+        scrollView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        scrollView.clipsToBounds = true
+        scrollView.layer.masksToBounds = true
         
         shadowView.layer.cornerRadius = 25
         shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -65,9 +176,23 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
         shadowView.layer.masksToBounds = false
     
         let UsedCardsCellNib = UINib(nibName: "UsedCardsTableViewCell", bundle: nil)
-        tableView.register(UsedCardsCellNib, forCellReuseIdentifier: "UsedCardsTableViewCell")
         
-        tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+        tableView1.register(UsedCardsCellNib, forCellReuseIdentifier: "UsedCardsTableViewCell")
+        tableView1.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+        
+        tableView2.register(UsedCardsCellNib, forCellReuseIdentifier: "UsedCardsTableViewCell")
+        tableView2.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+        
+        tableView3.register(UsedCardsCellNib, forCellReuseIdentifier: "UsedCardsTableViewCell")
+        tableView3.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+    }
+    
+    func addShadow(to view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4
+        view.layer.masksToBounds = false
     }
     
     func fetchDataAndPrepareData() {
@@ -127,6 +252,7 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch section {
             case 0:
                 return 1
@@ -139,32 +265,96 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UsedCardsTableViewCell", for: indexPath) as! UsedCardsTableViewCell
+        if tableView == tableView1 {
             
-            var transaction: [String: String]
-        
-            if indexPath.section == 0 {
-                transaction = lastTransaction[indexPath.row]
-            } else {
-                transaction = otherTransactions[indexPath.row]
-            }
-        
-            let timeStamp = transaction["timeStamp"]!
-            let (formattedDate, time) = parseTimestamp(timeStamp)
+            let cell = tableView1.dequeueReusableCell(withIdentifier: "UsedCardsTableViewCell", for: indexPath) as! UsedCardsTableViewCell
+                
+                var transaction: [String: String]
+            
+                if indexPath.section == 0 {
+                    transaction = lastTransaction[indexPath.row]
+                } else {
+                    transaction = otherTransactions[indexPath.row]
+                }
+            
+                let timeStamp = transaction["timeStamp"]!
+                let (formattedDate, time) = parseTimestamp(timeStamp)
 
-            cell.cardNumber.text = transaction["cardNumber"]
-            cell.merchantUsedAt.text = transaction["merchant"]
-            cell.Date.text = formattedDate
-            cell.timeStampValue.text = time
-        
-            return cell
+                cell.cardNumber.text = transaction["cardNumber"]
+                cell.merchantUsedAt.text = transaction["merchant"]
+                cell.Date.text = formattedDate
+                cell.timeStampValue.text = time
+            
+                return cell
+            
+        } else if tableView == tableView2 {
+            
+            let cell = tableView1.dequeueReusableCell(withIdentifier: "UsedCardsTableViewCell", for: indexPath) as! UsedCardsTableViewCell
+                
+                var transaction: [String: String]
+            
+                if indexPath.section == 0 {
+                    transaction = lastTransaction[indexPath.row]
+                } else {
+                    transaction = otherTransactions[indexPath.row]
+                }
+            
+                let timeStamp = transaction["timeStamp"]!
+                let (formattedDate, time) = parseTimestamp(timeStamp)
+
+                cell.cardNumber.text = transaction["cardNumber"]
+                cell.merchantUsedAt.text = transaction["merchant"]
+                cell.Date.text = formattedDate
+                cell.timeStampValue.text = time
+            
+                return cell
+            
+        } else {
+            
+            let cell = tableView1.dequeueReusableCell(withIdentifier: "UsedCardsTableViewCell", for: indexPath) as! UsedCardsTableViewCell
+                
+                var transaction: [String: String]
+            
+                if indexPath.section == 0 {
+                    transaction = lastTransaction[indexPath.row]
+                } else {
+                    transaction = otherTransactions[indexPath.row]
+                }
+            
+                let timeStamp = transaction["timeStamp"]!
+                let (formattedDate, time) = parseTimestamp(timeStamp)
+
+                cell.cardNumber.text = transaction["cardNumber"]
+                cell.merchantUsedAt.text = transaction["merchant"]
+                cell.Date.text = formattedDate
+                cell.timeStampValue.text = time
+            
+                return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if tableView == tableView1 {
             
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
-        headerView.titleLabel.text = sectionTitles[section]
-        return headerView
+            let headerView = tableView1.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+            headerView.titleLabel.text = sectionTitles[section]
+            return headerView
+            
+        } else if tableView == tableView2 {
+            
+            let headerView = tableView2.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+            headerView.titleLabel.text = sectionTitles[section]
+            return headerView
+            
+        } else {
+            
+            let headerView = tableView2.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+            headerView.titleLabel.text = sectionTitles[section]
+            return headerView
+            
+        }
+            
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -172,6 +362,7 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func parseTimestamp(_ timeStamp: String) -> (date: String, time: String) {
+        
         let components = timeStamp.split(separator: "T")
         let dateString = String(components[0])
         let time = String(components[1])

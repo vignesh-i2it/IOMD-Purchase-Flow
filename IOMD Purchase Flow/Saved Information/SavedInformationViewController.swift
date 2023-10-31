@@ -10,6 +10,7 @@ import UIKit
 struct SectionItem {
     var title : String
     var subheading: String
+    var imageName: String
     var items: [String]
     var isExpanded: Bool
     var isTokenized: Bool
@@ -42,9 +43,13 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet weak var savedBackButton: UIButton!
     @IBOutlet weak var yourScrollView: UIScrollView!
     
+    @IBOutlet weak var shadowView: UIView!
+    
     let sectionTitles = ["User", "Name", "Address", "Card", "Email", "Phone"]
     
     let headerSection = ["", "Male User", "Patty", "Williams", ""]
+    
+    var userName: String = "Robert Di Matteo"
     
     var cardData: [[String: String]] = [
         ["firstName": "Jack", "lastName": "Dawson","cardNumber": "8765 5678 9862 6543",
@@ -71,20 +76,20 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         
         super.viewDidLoad()
         
-        let item1 = SectionItem(title: "User", subheading: "", items: [""], isExpanded: false, isTokenized: false)
-        let item2 = SectionItem(title: "Name", subheading: "This is your tokenized name to keep yours private.", items: ["jason derulo"], isExpanded: false, isTokenized: false)
-        let item3 = SectionItem(title: "Address", subheading: "Your tokenized address keeps your location safe.", items: ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"], isExpanded: false, isTokenized: false)
-        let item4 = SectionItem(title: "Card", subheading: "This tokenized card is linked to yours, keeping it safe.", items: ["4321 3432 2432 7891", "8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543"], isExpanded: false, isTokenized: false)
-        let item5 = SectionItem(title: "Email", subheading: "Using your personal email. No spam protection.", items: ["jasonderulo@gmail.com", "jackdawson@gmail.com"], isExpanded: false, isTokenized: false)
-        let item6 = SectionItem(title: "Phone", subheading: "Your tokenized phone number hides your real one" , items: ["8734234523", "92438 43425"], isExpanded: false, isTokenized: false)
+        let item1 = SectionItem(title: "User", subheading: "", imageName: "", items: [""], isExpanded: false, isTokenized: false)
+        let item2 = SectionItem(title: "Name", subheading: "This is your tokenized name to keep yours private.",imageName: "tokenized user icon", items: ["jason derulo"], isExpanded: false, isTokenized: false)
+        let item3 = SectionItem(title: "Address", subheading: "Your tokenized address keeps your location safe.", imageName: "tokenized address icon", items: ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"], isExpanded: false, isTokenized: false)
+        let item4 = SectionItem(title: "Card", subheading: "This tokenized card is linked to yours, keeping it safe.",imageName: "tokenized user icon", items: ["1111 3432 2432 7891", "2222 5678 9862 6543","3333 5678 9862 6543","4444 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543"], isExpanded: false, isTokenized: false)
+        let item5 = SectionItem(title: "Email", subheading: "Using your personal email. No spam protection.", imageName: "tokenized user icon", items: ["jasonderulo@gmail.com", "jackdawson@gmail.com"], isExpanded: false, isTokenized: false)
+        let item6 = SectionItem(title: "Phone", subheading: "Your tokenized phone number hides your real one",imageName: "tokenized phone icon", items: ["8734234523", "92438 43425"], isExpanded: false, isTokenized: false)
         
         
-        let item7 = SectionItem(title: "User", subheading: "", items: [""], isExpanded: false, isTokenized: true)
-        let item8 = SectionItem(title: "Name", subheading: "This is your tokenized name to keep yours private.", items: ["jason derulo"], isExpanded: false, isTokenized: true)
-        let item9 = SectionItem(title: "Address", subheading: "Your tokenized address keeps your location safe.", items: ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "43456 sd St, Unit 211, Tennesse TA 43232"], isExpanded: false, isTokenized: true)
-        let item10 = SectionItem(title: "Card", subheading: "This tokenized card is linked to yours, keeping it safe.", items: ["4321 3432 2432 7891", "8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543"], isExpanded: false, isTokenized: true)
-        let item11 = SectionItem(title: "Email", subheading: "Using your personal email. No spam protection.", items: ["jasonderulo@gmail.com", "jackdawson@gmail.com"], isExpanded: false, isTokenized: true)
-        let item12 = SectionItem(title: "Phone", subheading: "Your tokenized phone number hides your real one" , items: ["8734234523", "92438 43425"], isExpanded: false, isTokenized: true)
+        let item7 = SectionItem(title: "User", subheading: "", imageName: "", items: [""], isExpanded: false, isTokenized: true)
+        let item8 = SectionItem(title: "Name", subheading: "This is your tokenized name to keep yours private.", imageName: "tokenized user icon", items: ["Robert Di Matteo", "Dwayne Bravo", "Jason Derulo"], isExpanded: false, isTokenized: true)
+        let item9 = SectionItem(title: "Address", subheading: "Your tokenized address keeps your location safe.", imageName: "tokenized address icon", items: ["2101 Chestnut St, Unit 624, Philadelphia PA 19103", "1241 Walnut St, Unit 421, Philadelphia PA 19103"], isExpanded: false, isTokenized: true)
+        let item10 = SectionItem(title: "Card", subheading: "This tokenized card is linked to yours, keeping it safe.", imageName: "tokenized card icon", items: ["1111 3432 2432 7891", "2222 5678 9862 6543","3333 5678 9862 6543","4444 5678 9862 6543","5555 5678 9862 6543","6666 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543","8765 5678 9862 6543"], isExpanded: false, isTokenized: true)
+        let item11 = SectionItem(title: "Email", subheading: "Using your personal email. No spam protection.", imageName: "tokenized email icon", items: ["jasonderulo@gmail.com", "jackdawson@gmail.com"], isExpanded: false, isTokenized: true)
+        let item12 = SectionItem(title: "Phone", subheading: "Your tokenized phone number hides your real one", imageName: "tokenized phone icon", items: ["8734234523", "92438 43425"], isExpanded: false, isTokenized: true)
 
         listSection.append(item1)
         listSection.append(item2)
@@ -113,7 +118,6 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         let card4 = cardItem(name: "Jack Dawson", number: "7635 5678 9862 6543", expiry: "12/25", isHidden: true)
         let card5 = cardItem(name: "Jack Dawson", number: "3932 5678 9862 6543", expiry: "12/25", isHidden: true)
         let card6 = cardItem(name: "Jack Dawson", number: "2229 5678 9862 6543", expiry: "12/25", isHidden: true)
-
         
         cardsList.append(card1)
         cardsList.append(card2)
@@ -171,6 +175,18 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         tableView.delegate = self
         tableView.dataSource = self
+        self.tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        tableView.sectionHeaderHeight = 0
+        
+        tableView.backgroundColor = UIColor.white
+        
+        shadowView.layer.cornerRadius = 25
+        shadowView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        shadowView.layer.shadowColor = UIColor.black.cgColor
+        shadowView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        shadowView.layer.shadowOpacity = 0.5
+        shadowView.layer.shadowRadius = 4.0
+        shadowView.layer.masksToBounds = false
         
         plainTableView = UITableView(frame: .zero, style: .plain)
         plainTableView.delegate = self
@@ -200,6 +216,14 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.register(customCellNib, forCellReuseIdentifier: "myTabCell")
         plainTableView.register(customCellNib, forCellReuseIdentifier: "myTabCell")
         
+        let tokenizedHeadingNib = UINib(nibName: "TokenizedHeadingTableViewCell", bundle: nil)
+        tableView.register(tokenizedHeadingNib, forCellReuseIdentifier: "TokenizedHeadingTableViewCell")
+        plainTableView.register(tokenizedHeadingNib, forCellReuseIdentifier: "TokenizedHeadingTableViewCell")
+        
+        tableView.register(UINib(nibName: "UserNameTableViewCell", bundle: nil), forCellReuseIdentifier: "UserNameTableViewCell")
+        plainTableView.register(UINib(nibName: "UserNameTableViewCell", bundle: nil), forCellReuseIdentifier: "UserNameTableViewCell")
+    
+        
         let customHeaderCellNib = UINib(nibName: "myCustomHeaderCell", bundle: nil)
         tableView.register(customHeaderCellNib, forCellReuseIdentifier: "myCustomHeaderCell")
         plainTableView.register(customHeaderCellNib, forCellReuseIdentifier: "myCustomHeaderCell")
@@ -211,7 +235,7 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
         
         plainTableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
-    
+        
         savedBackButton.layer.cornerRadius = savedBackButton.frame.size.height / 2
         savedBackButton.layer.masksToBounds = true
         savedBackButton.backgroundColor = UIColor(hex: "#8877F2")
@@ -290,23 +314,25 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if button3.isSelected {
+            
             return cardData.count
+            
         } else if button2.isSelected {
+            
             if section == 0 {
                 return 1
             } else {
-                return tokenizedListSection[section].isExpanded ? tokenizedListSection[section].items.count : 1
+                return tokenizedListSection[section].isExpanded ? tokenizedListSection[section].items.count + 1 : 2
             }
         } else {
             return personalListSection[section].isExpanded ? personalListSection[section].items.count : 1
-
-//            return listSection[section].items.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if button3.isSelected {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "CardTableViewCell", for: indexPath) as! CardTableViewCell
             
             let card = cardsList[indexPath.row]
@@ -402,51 +428,107 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         } else {
             
             if indexPath.section == 0 {
-    
-                let cell = tableView.dequeueReusableCell(withIdentifier: "myCustomHeaderCell", for: indexPath) as! myCustomHeaderCell
-    
-                cell.label1.text = headerSection[2]
-                cell.label2.text = headerSection[3]
-                cell.label3.text = headerSection[4]
-    
-                cell.imageView1.image = UIImage(named: headerSection[0])
-                cell.imageView2.image = UIImage(named: headerSection[1])
-    
-                return cell
-    
-            } else {
-    
-                let cell = tableView.dequeueReusableCell(withIdentifier: "myTabCell", for: indexPath) as! myTabCell
             
-                cell.iconView.image = UIImage(named: "Tokenized User")
-                cell.value.text = tokenizedListSection[indexPath.section].items[indexPath.row]
-            
-                let cellBackgroundView = SectionBackgroundView()
+                let cell = tableView.dequeueReusableCell(withIdentifier: "UserNameTableViewCell", for: indexPath) as! UserNameTableViewCell
+                    
+                let formattedName = formatName(userName)
+                cell.userNameLabel.attributedText = formattedName
                 
-                cellBackgroundView.isHeader = false
-                cellBackgroundView.isLastRow = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
-                    cell.backgroundView = cellBackgroundView
+                cell.userNameLabel.text = cell.userNameLabel.text?.replacingOccurrences(of: " ", with: "\n")
+                                
+                cell.editAction = { isEditing in
+                    if isEditing {
+                        self.saveUserName(cell.userNameLabel.text ??  "")
+                    }
+                }
 
                 return cell
+                
+            } else {
+                
+                if indexPath.row == 0 {
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "TokenizedHeadingTableViewCell", for: indexPath) as! TokenizedHeadingTableViewCell
+       
+                    cell.headingLabel.text = tokenizedListSection[indexPath.section].title
+                    cell.subheadingLabel.text = tokenizedListSection[indexPath.section].subheading
+                    cell.dropDownButton.tag = indexPath.section
+                    cell.dropDownButton.addTarget(self, action: #selector(tokenizedToggle), for: .touchUpInside)
+                    cell.dropDownButton.setTitle(tokenizedListSection[indexPath.section].isExpanded ? "▲" : "▼", for: .normal)
+                    return cell
+                    
+                } else {
+
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "myTabCell", for: indexPath) as! myTabCell
+                    cell.iconView.image = UIImage(named: tokenizedListSection[indexPath.section].imageName)
+                    cell.value.text = tokenizedListSection[indexPath.section].items[indexPath.row - 1]
+                    
+                    cell.editAction = { isEditing in
+                                if isEditing {
+                                    self.saveEditedText(cell)
+                                }
+                            }
+                    
+                    return cell
+                }
             }
         }
+    }
+    
+    
+    func formatName(_ name: String) -> NSAttributedString {
+        let words = name.components(separatedBy: " ")
+            if let firstWord = words.first {
+                let attributedText = NSMutableAttributedString(string: name)
+                attributedText.addAttributes([
+                    .font: UIFont.boldSystemFont(ofSize: 18),
+                    .foregroundColor: UIColor.black,
+                ], range: (name as NSString).range(of: firstWord))
+                return attributedText
+            }
+            return NSAttributedString(string: name)
+    }
+    
+    private func saveEditedText(_ cell: myTabCell) {
+            if let indexPath = tableView.indexPath(for: cell) {
+                tokenizedListSection[indexPath.section].items[indexPath.row - 1] = cell.value.text ?? ""
+            }
+        }
+    
+    private func saveUserName(_ updatedName: String) {
+        userName = updatedName
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
+            
             return 80.0
+            
+        } else if indexPath.row == 0 {
+            
+            return 40
+            
         } else {
-            return UITableView.automaticDimension
+    
+            let cell = tableView.dequeueReusableCell(withIdentifier: "myTabCell") as! myTabCell
+            let text = tokenizedListSection[indexPath.section].items[indexPath.row - 1]
+            cell.value.text = text
+                        
+            let labelHeight = cell.value.sizeThatFits(CGSize(width: cell.value.frame.size.width, height: CGFloat.greatestFiniteMagnitude)).height
+
+            let cellHeight = labelHeight + 26
+
+            return cellHeight
         }
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         
         if button1.isSelected {
             
             if section == 0 {
+                
                 return nil
                 
             } else {
@@ -484,34 +566,15 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
                 
             } else {
                 
-                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TokenizedHeaderView") as! TokenizedHeaderView
-                headerView.headingLabel.text = tokenizedListSection[section].title
-                headerView.subheadingLabel.text = tokenizedListSection[section].subheading
-                headerView.dropDownButton.tag = section
-                headerView.dropDownButton.addTarget(self, action: #selector(tokenizedToggle), for: .touchUpInside)
-                
-                headerView.dropDownButton.setTitle(tokenizedListSection[section].isExpanded ? "▲" : "▼", for: .normal)
-                
-                let sectionBackgroundView = SectionBackgroundView()
-                sectionBackgroundView.isHeader = true
-                sectionBackgroundView.addSubview(headerView)
-                
-                headerView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    headerView.topAnchor.constraint(equalTo: sectionBackgroundView.topAnchor),
-                    headerView.leadingAnchor.constraint(equalTo: sectionBackgroundView.leadingAnchor),
-                    headerView.trailingAnchor.constraint(equalTo: sectionBackgroundView.trailingAnchor),
-                    headerView.bottomAnchor.constraint(equalTo: sectionBackgroundView.bottomAnchor),
-                ])
-                
-                return sectionBackgroundView
+                return nil
+        
             }
+            
         } else {
             return nil
         }
     }
     
-        
     @objc func personalizedToggle(_ sender: UIButton) {
         let section = sender.tag
         personalListSection[section].isExpanded = !personalListSection[section].isExpanded
@@ -523,14 +586,13 @@ class SavedInformationViewController: UIViewController, UITableViewDataSource, U
         tokenizedListSection[section].isExpanded = !tokenizedListSection[section].isExpanded
         tableView.reloadSections([section], with: .automatic)
     }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        if section == 0 {
-            return 0
-        } else {
-            return 50.0
-        }
-        
-    }
+    
+//   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 0
+//        } else {
+//            return 50.0
+//        }
+//    }
+    
 }

@@ -22,6 +22,10 @@
 		2F3D0F142AAB465B0063EEF2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */; };
 		2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */; };
 		2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */; };
+		2F59D5362ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F59D5342ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.swift */; };
+		2F59D5372ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F59D5352ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.xib */; };
+		2F8A67E02AEEBBAD009EED58 /* UserNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A67DE2AEEBBAD009EED58 /* UserNameTableViewCell.swift */; };
+		2F8A67E12AEEBBAD009EED58 /* UserNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8A67DF2AEEBBAD009EED58 /* UserNameTableViewCell.xib */; };
 		2F964C0E2ACEBC69004E88F7 /* myTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F964C0C2ACEBC69004E88F7 /* myTabCell.swift */; };
 		2F964C0F2ACEBC69004E88F7 /* myTabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F964C0D2ACEBC69004E88F7 /* myTabCell.xib */; };
 		2F964C122ACECBC6004E88F7 /* myCustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F964C102ACECBC6004E88F7 /* myCustomHeaderCell.swift */; };
@@ -57,6 +61,10 @@
 		2F3D0F132AAB465B0063EEF2 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		2F3D0F152AAB477F0063EEF2 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		2F3D0F172AAB4ABB0063EEF2 /* SavedInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedInformationViewController.swift; sourceTree = "<group>"; };
+		2F59D5342ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedHeadingTableViewCell.swift; sourceTree = "<group>"; };
+		2F59D5352ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenizedHeadingTableViewCell.xib; sourceTree = "<group>"; };
+		2F8A67DE2AEEBBAD009EED58 /* UserNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameTableViewCell.swift; sourceTree = "<group>"; };
+		2F8A67DF2AEEBBAD009EED58 /* UserNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserNameTableViewCell.xib; sourceTree = "<group>"; };
 		2F964C0C2ACEBC69004E88F7 /* myTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTabCell.swift; sourceTree = "<group>"; };
 		2F964C0D2ACEBC69004E88F7 /* myTabCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myTabCell.xib; sourceTree = "<group>"; };
 		2F964C102ACECBC6004E88F7 /* myCustomHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCustomHeaderCell.swift; sourceTree = "<group>"; };
@@ -125,6 +133,10 @@
 				2F964C102ACECBC6004E88F7 /* myCustomHeaderCell.swift */,
 				2F964C142ACEE373004E88F7 /* CardTableViewCell.swift */,
 				2FB48C3F2AD01C80000E70A7 /* UsedCardsTableViewCell.swift */,
+				2F59D5342ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.swift */,
+				2F8A67DE2AEEBBAD009EED58 /* UserNameTableViewCell.swift */,
+				2F8A67DF2AEEBBAD009EED58 /* UserNameTableViewCell.xib */,
+				2F59D5352ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.xib */,
 				2FB48C402AD01C80000E70A7 /* UsedCardsTableViewCell.xib */,
 				2F964C152ACEE373004E88F7 /* CardTableViewCell.xib */,
 				2F964C112ACECBC6004E88F7 /* myCustomHeaderCell.xib */,
@@ -243,8 +255,10 @@
 				2F3D0EFF2AAB410E0063EEF2 /* Assets.xcassets in Resources */,
 				2FA86B172AD6AD6F00F0CED4 /* transactions.json in Resources */,
 				2F964C0F2ACEBC69004E88F7 /* myTabCell.xib in Resources */,
+				2F59D5372ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.xib in Resources */,
 				2F3D0EFD2AAB410C0063EEF2 /* Main.storyboard in Resources */,
 				2F964C132ACECBC6004E88F7 /* myCustomHeaderCell.xib in Resources */,
+				2F8A67E12AEEBBAD009EED58 /* UserNameTableViewCell.xib in Resources */,
 				2F964C172ACEE373004E88F7 /* CardTableViewCell.xib in Resources */,
 				2FB48C422AD01C80000E70A7 /* UsedCardsTableViewCell.xib in Resources */,
 			);
@@ -258,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F3D0F122AAB46340063EEF2 /* CustomHeaderView.swift in Sources */,
+				2F8A67E02AEEBBAD009EED58 /* UserNameTableViewCell.swift in Sources */,
 				2F3D0F102AAB45E40063EEF2 /* CustomHeaderCell.swift in Sources */,
 				2FB48C412AD01C80000E70A7 /* UsedCardsTableViewCell.swift in Sources */,
 				2FAC483D2AC6F64100C82A8A /* SectionBackgroundView.swift in Sources */,
@@ -272,6 +287,7 @@
 				2F3D0F162AAB477F0063EEF2 /* BottomSheetViewController.swift in Sources */,
 				2FA6F6932AB489C6005772AE /* GreenScreenViewController.swift in Sources */,
 				2F3D0F0E2AAB45720063EEF2 /* NameCell.swift in Sources */,
+				2F59D5362ADD2F8300F7BCF6 /* TokenizedHeadingTableViewCell.swift in Sources */,
 				2F182ECC2AB97DDA00FFCD7B /* MainNavController.swift in Sources */,
 				2F3D0F182AAB4ABB0063EEF2 /* SavedInformationViewController.swift in Sources */,
 				2F964C162ACEE373004E88F7 /* CardTableViewCell.swift in Sources */,

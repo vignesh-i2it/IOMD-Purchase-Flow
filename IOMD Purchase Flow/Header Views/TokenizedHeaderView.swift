@@ -37,12 +37,13 @@ class TokenizedHeaderView: UITableViewHeaderFooterView {
     }()
     
     override init(reuseIdentifier: String?) {
+
         super.init(reuseIdentifier: reuseIdentifier)
-        
+
         addSubview(headingLabel)
         addSubview(subheadingLabel)
         addSubview(dropDownButton)
-        
+
         setupConstraints()
     }
     
@@ -51,6 +52,7 @@ class TokenizedHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupConstraints() {
+        
         NSLayoutConstraint.activate([
             headingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             headingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

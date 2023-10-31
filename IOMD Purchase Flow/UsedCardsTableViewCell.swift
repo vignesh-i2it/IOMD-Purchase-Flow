@@ -22,6 +22,7 @@ class UsedCardsTableViewCell: UITableViewCell {
         
         super.awakeFromNib()
         
+        contentView.backgroundColor = UIColor(hex: "#FAFAFA")
         //self.contentView.backgroundColor = UIColor(hex: "#FAFAFA")
         
     }

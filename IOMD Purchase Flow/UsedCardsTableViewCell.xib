@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3232 1212 1212 1212" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VD4-Nw-Xcd">
-                        <rect key="frame" x="124" y="10" width="195" height="20"/>
+                        <rect key="frame" x="128" y="10" width="195" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="AkC-iH-tJa"/>
                         </constraints>
@@ -56,13 +56,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Curative Lifestyle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOt-Tv-vyj">
-                        <rect key="frame" x="124" y="40" width="195" height="20"/>
+                        <rect key="frame" x="128" y="40" width="195" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 Sep 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHf-Nf-ZXv">
-                        <rect key="frame" x="123.66666666666669" y="70" width="103" height="21"/>
+                        <rect key="frame" x="128.66666666666666" y="70" width="103" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="103" id="nYX-EY-IQc"/>
                         </constraints>
@@ -71,7 +71,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16:32:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8an-KG-POc">
-                        <rect key="frame" x="233.66666666666663" y="70" width="68" height="21"/>
+                        <rect key="frame" x="238.66666666666663" y="70" width="68" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
                     <constraint firstItem="BHf-Nf-ZXv" firstAttribute="top" secondItem="oOt-Tv-vyj" secondAttribute="bottom" constant="10" id="MhM-SH-9hV"/>
                     <constraint firstItem="8an-KG-POc" firstAttribute="leading" secondItem="BHf-Nf-ZXv" secondAttribute="trailing" constant="7" id="Obr-TI-hmo"/>
                     <constraint firstItem="Jlg-PG-dKQ" firstAttribute="leading" secondItem="iFE-7e-7R3" secondAttribute="leading" id="Ofy-7j-bsf"/>
-                    <constraint firstItem="VD4-Nw-Xcd" firstAttribute="leading" secondItem="iFE-7e-7R3" secondAttribute="trailing" constant="70" id="OkL-6D-X8L"/>
+                    <constraint firstItem="VD4-Nw-Xcd" firstAttribute="leading" secondItem="iFE-7e-7R3" secondAttribute="trailing" constant="75" id="OkL-6D-X8L"/>
                     <constraint firstItem="8an-KG-POc" firstAttribute="top" secondItem="BHf-Nf-ZXv" secondAttribute="top" id="TnF-Dt-uld"/>
                     <constraint firstItem="BHf-Nf-ZXv" firstAttribute="leading" secondItem="VD4-Nw-Xcd" secondAttribute="leading" id="Wnv-Nc-W0A"/>
                     <constraint firstItem="iFE-7e-7R3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="a7H-Kb-dhz"/>

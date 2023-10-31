@@ -19,7 +19,7 @@ class CustomHeaderView: UITableViewHeaderFooterView {
 
         return label
     }()
-        
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
