@@ -40,9 +40,8 @@ class UserNameTableViewCell: UITableViewCell {
         
         textField.isHidden = true
         textField.autocorrectionType = .no
-               textField.autocapitalizationType = .none
+        textField.autocapitalizationType = .none
         textField.spellCheckingType = .no
-        
     }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {

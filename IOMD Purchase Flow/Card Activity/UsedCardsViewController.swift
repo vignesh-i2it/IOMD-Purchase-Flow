@@ -77,8 +77,13 @@ class UsedCardsViewController: UIViewController, UITableViewDelegate, UITableVie
     func scrollToTableView(_ tableView: UITableView) {
         if let index = [tableView1, tableView2, tableView3].firstIndex(of: tableView) {
             currentTableView = tableView
-            let xOffset = CGFloat(index) * horizontalScrollView.frame.width
-            horizontalScrollView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
+            
+            //let xOffset = CGFloat(index) * horizontalScrollView.frame.width
+            //horizontalScrollView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
+            
+            let rectToScroll = CGRect(x: CGFloat(index) * horizontalScrollView.frame.width, y: 0, width: horizontalScrollView.frame.width, height: horizontalScrollView.frame.height)
+                   horizontalScrollView.scrollRectToVisible(rectToScroll, animated: true)
+               
         }
     }
     
